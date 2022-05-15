@@ -11,5 +11,4 @@ const mix = require('laravel-mix');
 |
 */
 
-mix.js('resources/js/bootstrap.bundle.min.js', 'public/js')
-    .css('resources/css/theme.min.css', 'public/css');
+mix.js('resources/js/notifications.js', 'public/js');

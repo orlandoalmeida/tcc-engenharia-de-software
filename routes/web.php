@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// renomeando o padrão do laravel para pt-br
+Route::resourceVerbs([
+    'create' => 'novo',
+    'edit' => 'editar',
+]);
+
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/entrar', [LoginController::class, 'autenticate'])->name('entrar');
+Route::get('/sair', [LoginController::class, 'logout'])->name('sair');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dash');
+    Route::resource('/usuario', UserController::class);
 });

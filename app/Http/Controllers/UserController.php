@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        dd(Auth::user());
+        $users = (new User)->lazy()->all();
+        $data = [
+            'title' => 'Usuários',
+            'user' => Auth::user(),
+            'users' => $users
+        ];
+        return view('users.index', $data);
     }
 
     /**
@@ -24,7 +31,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Usuários',
+            'user' => Auth::user(),
+        ];
+        return view('users.create', $data);
     }
 
     /**
@@ -35,7 +46,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo 'store';
     }
 
     /**
@@ -80,6 +91,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete($id);
     }
+
+    public function seed(){
+        User::factory()->count(5)->create();
+        return redirect()->route('dash');
+    }
+
 }

@@ -29,4 +29,5 @@ Route::get('/sair', [LoginController::class, 'logout'])->name('sair');
 Route::middleware('auth')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dash');
     Route::resource('/usuario', UserController::class);
+    Route::get('/userSeed', [UserController::class, 'seed'])->name('usuario.seed');
 });

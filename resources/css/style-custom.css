@@ -1,0 +1,4 @@
+.topo-lista-cadastros{
+    display: flex;
+    justify-content: space-between;
+}

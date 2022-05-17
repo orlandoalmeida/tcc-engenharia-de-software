@@ -12,24 +12,26 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome/css/font-awesome.min.css') }}" />
     <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/plugins/lobibox-master/dist/css/lobibox.min.css') }}" rel="stylesheet"
-        type="text/css" />
+    <link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/lobibox-master/dist/css/lobibox.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/style-custom.css') }}" rel="stylesheet" type="text/css" />
     @hasSection('app-css')
         @yield('app-css')
     @endif
 </head>
 <body>
-    @extends('layout.top-menu')
-    @extends('layout.side-menu')
+    @include('layout.top-menu')
+    @include('layout.side-menu')
     <div id="layout-wrapper">
         <div class="main-content">
             @hasSection('content')
                 @yield('content')
             @endif
-            @extends('layout.footer')
+            @include('layout.footer')
         </div>
     </div>
     <div class="menu-overlay"></div>
+    <script>var baseUri = '{{url('')}}'; </script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/metismenu.min.js') }}"></script>
@@ -37,8 +39,10 @@
     <script src="{{ asset('assets/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
     <script src="{{ asset('assets/plugins/lobibox-master/dist/js/lobibox.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('js/notifications.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
+    <script src="{{ asset('assets/datatable_ptbr.js') }}"></script>
     @hasSection('app-js')
         @yield('app-js')
     @endif

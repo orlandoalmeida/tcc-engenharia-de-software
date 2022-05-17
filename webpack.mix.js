@@ -11,4 +11,6 @@ const mix = require('laravel-mix');
 |
 */
 
-mix.js('resources/js/notifications.js', 'public/js');
+mix.js('resources/js/notifications.js', 'public/js')
+.js('resources/views/users/index.js', 'public/js/users')
+.css('resources/css/style-custom.css', 'css/style-custom.css');

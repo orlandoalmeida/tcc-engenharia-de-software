@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Orlando Almeida',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin'),
+            'profile_picture' => 'avatars/no-avatar.png',
         ]);
     }
 }

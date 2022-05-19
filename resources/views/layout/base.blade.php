@@ -38,11 +38,13 @@
     <script src="{{ asset('assets/js/waves.js') }}"></script>
     <script src="{{ asset('assets/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.mask.js') }}"></script>
     <script src="{{ asset('assets/plugins/lobibox-master/dist/js/lobibox.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('js/notifications.js') }}"></script>
-    <script src="{{ asset('assets/js/theme.js') }}"></script>
+    <script src="{{ asset('js/validations.js') }}"></script>
     <script src="{{ asset('assets/datatable_ptbr.js') }}"></script>
+    <script src="{{ asset('assets/js/theme.js') }}"></script>
     @hasSection('app-js')
         @yield('app-js')
     @endif

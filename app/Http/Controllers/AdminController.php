@@ -11,7 +11,6 @@ class AdminController extends Controller
     public function dashboard(){
         $data = [
             'title' => 'Home',
-            'user' => Auth::user(),
             'total_users' => (new User)->count(),
         ];
         return view('dashboard', $data);

@@ -20,8 +20,8 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="feather-user"></i><span>Usuários</span></a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="{{route('usuario.index')}}">Listar Usuários</a></li>
-                        <li><a href="{{route('usuario.create')}}">Novo Usuário</a></li>
+                        <li><a id="menu-usuarios-index" href="{{route('usuario.index')}}">Listar Usuários</a></li>
+                        <li><a id="menu-usuarios-create" href="{{route('usuario.create')}}">Novo Usuário</a></li>
                     </ul>
                 </li>
 

@@ -9,7 +9,7 @@
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="topo-lista-cadastros col-12">
+                <div class="topo-cadastros col-12">
                     <div class="page-title-box d-flex align-items-center justify-content-between">
                         <h4 class="mb-0 font-size-18">Lista de Usuários</h4>
                     </div>
@@ -28,6 +28,7 @@
                         <table id="datatable-buttons" class="table table-striped nowrap">
                             <thead class="thead-light">
                                 <tr>
+                                    <th>Avatar</th>
                                     <th>#ID</th>
                                     <th>Nome</th>
                                     <th>Email</th>
@@ -38,6 +39,9 @@
                                 @isset($users)
                                     @foreach ($users as $user)
                                         <tr id="usuario-{{ $user->id }}">
+                                            <td>
+                                                <img class="rounded-circle header-profile-user" src="{{asset("$user->profile_picture")}}">
+                                            </td>
                                             <td>#{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
@@ -61,9 +65,9 @@
                             </tbody>
                         </table>
 
-                    </div> <!-- end card body-->
-                </div> <!-- end card -->
-            </div><!-- end col-->
+                    </div>
+                </div> 
+            </div>
         </div>
 
     </div>
@@ -93,19 +97,19 @@
                 buttons: [{
                         extend: 'copyHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [1, 2, 3]
                         }
                     },
                     {
                         extend: 'csvHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [1, 2, 3]
                         }
                     },
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [1, 2, 3]
                         }
                     },
                 ],
@@ -117,4 +121,14 @@
             }).buttons().container().appendTo("#datatable-buttons_wrapper .col-md-6:eq(0)");
         });
     </script>
+    @if (Session::has('success')):
+        <script>
+            msgSuccess("{{ Session::get('success') }}");
+        </script>
+    @endif;
+    @if (Session::has('err')):
+    <script>
+        msgError("{{ Session::get('err') }}");
+    </script>
+@endif;
 @endSection

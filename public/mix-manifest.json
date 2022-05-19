@@ -1,5 +1,6 @@
 {
     "/js/notifications.js": "/js/notifications.js",
+    "/js/validations.js": "/js/validations.js",
     "/js/users/index.js": "/js/users/index.js",
     "/css/style-custom.css": "/css/style-custom.css"
 }

@@ -10,4 +10,4 @@ Estou deixando abaixo algumas instruçẽos de comandos para rodar para criar as
 - php artisan migrate --seed -> cria o banco de dados e roda as seeds predefinidas
 - php artisan storage:link -> cria link simbolico para as imagens que ficam guardadas no storage
 
-- /userSeed -> cria 10 usuários com nome e e-mail aleatórios
+- /usuarioSeed -> cria 10 usuários com nome e e-mail aleatórios

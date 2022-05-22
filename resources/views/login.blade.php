@@ -68,7 +68,7 @@
     <script src="{{ asset('assets/js/waves.js') }}"></script>
     <script src="{{ asset('assets/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/lobibox-master/dist/js/lobibox.min.js') }}"></script>
-    <script src="{{ asset('js/notifications.js') }}"></script>
+    <script src="{{ asset('js/notificacoes.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
     @if (Session::has('warning')):
         <script>

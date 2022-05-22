@@ -37,8 +37,8 @@
                             @csrf
                             <div class="row form-group">
                                 <div class="col">
-                                    <label for="name">Nome <span class="text-danger">*</span></label>
-                                    <input type="text" id="name" name="name" value="{{ old('name') }}"
+                                    <label for="nome">Nome <span class="text-danger">*</span></label>
+                                    <input type="text" id="nome" name="nome" value="{{ old('nome') }}"
                                         class="form-control" required="required" placeholder="Fulano de tal">
                                 </div>
                                 <div class="col">
@@ -62,11 +62,13 @@
                                         class="form-control" required="required">
                                 </div>
                             </div>
+                            <br>
+                            <h4>Foto de perfil</h4>
+                            <hr>
                             <div class="row">
                                 <div class="col form-group">
-                                    <label for="input-file-now-custom-1">Selecione uma imagem para o avatar do usuário
-                                        screen</label>
-                                    <input type="file" id="input-file-now-custom-1" name="profile_picture"
+                                    <label for="input-file-now-custom-1">Selecione uma imagem para a foto de perfil do usuário</label>
+                                    <input type="file" id="input-file-now-custom-1" name="foto_perfil"
                                         data-allowed-file-extensions="png jpeg jpg" class="dropify"
                                         data-default-file="" />
                                 </div>
@@ -87,7 +89,6 @@
     </div>
 @endSection
 @section('app-js')
-    <script src="{{ asset('js/verify-if-exist.js') }}"></script>
     <script src="{{ asset('assets/plugins/dropify/dist/js/dropify.min.js') }}"></script>
     <script>
         $(document).ready(function() {
@@ -101,6 +102,7 @@
                         $('#msg_email_invalid').hide();
                     } else {
                         $('#msg_email_invalid').text('E-mail inválido').show();
+                        $('#cpf').val('');
                         $('#email').focus();
                     }
                 }

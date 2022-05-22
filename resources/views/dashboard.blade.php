@@ -20,9 +20,9 @@
                     </div>
                     <div class="row d-flex align-items-center mb-4">
                         <div class="col-8">
-                            <h2 class="d-flex align-items-center mb-0 text-white">
-                                {{$total_users}} <?= $total_users > 1 ? 'Usuários' : 'Usuário' ?>
-                            </h2>
+                            <h3 class="d-flex align-items-center mb-0 text-white">
+                                {{$total_usuarios}} <?= $total_usuarios != 1 ? 'Usuários' : 'Usuário' ?>
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -38,9 +38,9 @@
                     </div>
                     <div class="row d-flex align-items-center mb-4">
                         <div class="col-8">
-                            <h2 class="d-flex align-items-center text-white mb-0">
-                                1,15,187
-                            </h2>
+                            <h3 class="d-flex align-items-center text-white mb-0">
+                                {{$total_funcionarios}} <?= $total_funcionarios != 1 ? 'Funcionários' : 'Funcionário' ?>
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -51,13 +51,13 @@
             <div class="card bg-info border-info">
                 <div class="card-body">
                     <div class="mb-4">
-                        <h5 class="card-title mb-0 text-white">FOO</h5>
+                        <h5 class="card-title mb-0 text-white">Clientes</h5>
                     </div>
                     <div class="row d-flex align-items-center mb-4">
                         <div class="col-8">
-                            <h2 class="d-flex align-items-center text-white mb-0">
-                                1,15,187
-                            </h2>
+                            <h3 class="d-flex align-items-center text-white mb-0">
+                                {{$total_clientes}} <?= $total_clientes != 1 ? 'Clientes' : 'Cliente' ?>
+                            </h3>
                         </div>
                     </div>
                 </div>

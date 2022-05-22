@@ -1,9 +1,9 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!****************************************!*\
-  !*** ./resources/views/users/index.js ***!
-  \****************************************/
-window.removeUser = function (user, token) {
+/*!********************************************!*\
+  !*** ./resources/views/custumers/index.js ***!
+  \********************************************/
+window.removeUsuario = function (user, token) {
   Swal.fire({
     title: "Remover usuário",
     text: "Você está prestes a remover um usuário, tem certeza que deseja continuar?",

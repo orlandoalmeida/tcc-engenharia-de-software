@@ -1,7 +1,7 @@
-window.removeUser = function (user, token) {
+window.removeUsuario = function (user, token) {
     Swal.fire({
-        title: "Remover usuário",
-        text: "Você está prestes a remover um usuário, tem certeza que deseja continuar?",
+        title: "Remover cliente",
+        text: "Você está prestes a remover um cliente, tem certeza que deseja continuar?",
         type: "warning",
         showCancelButton: !0,
         confirmButtonColor: "#3085d6",
@@ -12,20 +12,20 @@ window.removeUser = function (user, token) {
         t
     ) {
         $.ajax({
-            url: baseUri + '/usuario/' + user.id,
+            url: baseUri + '/cliente/' + user.id,
             type: 'DELETE',
             data: {
                 "id": user.id,
                 "_token": token,
             },
             success: function () {
-                t.value && Swal.fire("Deletado!", "Usuário deletado com sucesso.", "success").then(()=>{
+                t.value && Swal.fire("Deletado!", "cliente deletado com sucesso.", "success").then(()=>{
                     setTimeout(()=>{
                         window.location.reload();
                     }, 550);
                 });
-                msgSuccess('Usuário deletado com sucesso.', '');
-                let $user_remove = '#usuario-'+user.id;
+                msgSuccess('cliente deletado com sucesso.', '');
+                let $user_remove = '#cliente-'+user.id;
                 $($user_remove).remove();
             }
         });

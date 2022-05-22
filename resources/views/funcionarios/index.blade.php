@@ -11,10 +11,11 @@
             <div class="row">
                 <div class="topo-cadastros col-12">
                     <div class="page-title-box d-flex align-items-center justify-content-between">
-                        <h4 class="mb-0 font-size-18">Lista de Usuários</h4>
+                        <h4 class="mb-0 font-size-18">Lista de Funcionários</h4>
                     </div>
                     <div class="">
-                        <a href="{{ route('usuario.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus-circle"></i> Novo usuário</a>
+                        <a href="{{ route('funcionario.create') }}" class="btn btn-primary pull-right"><i
+                                class="fa fa-plus-circle"></i> Novo Funcionário</a>
                     </div>
                 </div>
             </div>
@@ -24,40 +25,49 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Usuários com acesso ao sistema</h4>
-                        <table id="datatable-buttons" class="table table-striped nowrap">
+                        <h4 class="card-title">Funcionários</h4>
+                        <table id="datatable-buttons" class="table table-striped">
                             <thead class="thead-light">
                                 <tr>
                                     <th>Avatar</th>
                                     <th>#ID</th>
                                     <th>Nome</th>
+                                    <th width="80">CPF</th>
                                     <th>Email</th>
-                                    <th>Ações</th>
+                                    <th>Cargo</th>
+                                    <th width="80">Salário</th>
+                                    <th width="80">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @isset($users)
-                                    @foreach ($users as $user)
-                                        <tr id="usuario-{{ $user->id }}">
+                                @isset($funcionarios)
+                                    @foreach ($funcionarios as $user)
+                                        <tr id="funcionario-{{ $user->id }}">
                                             <td>
-                                                <img class="rounded-circle header-profile-user" src="{{asset("$user->profile_picture")}}">
+                                                <img class="rounded-circle header-profile-user"
+                                                    src="{{ asset("$user->foto_perfil") }}">
                                             </td>
-                                            <td>#{{ $user->id }}</td>
-                                            <td>{{ $user->name }}</td>
+                                            <td data-sort="{{$user->id}}">#{{ $user->id }}</td>
+                                            <td>{{ $user->nome }}</td>
+                                            <td>{{ $user->cpf }}</td>
                                             <td>{{ $user->email }}</td>
+                                            <td>{{ $user->cargo_nome }}</td>
                                             <td>
-                                                <a href="{{ route('usuario.edit', $user->id) }}"
+                                                @if(!@empty($user->salario) && doubleval($user->salario) > 0.00)
+                                                    R$ {{ $user->salario }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('funcionario.edit', $user->id) }}"
                                                     class="btn btn-primary btn-sm btn-rounded text-white">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                @if (Auth::user()->id != $user->id)
-                                                    &nbsp;&nbsp;&nbsp;
-                                                    <a onclick="removeUser({{ $user }}, '{{ csrf_token() }}')"
-                                                        class="btn btn-danger btn-sm btn-rounded text-white"
-                                                        style="cursor: pointer;">
-                                                        <i class="fa fa-trash"></i>
-                                                    </a>
-                                                @endif
+                                                &nbsp;
+                                                <a onclick="removeUsuario({{ $user }}, '{{ csrf_token() }}')"
+                                                    class="btn btn-danger btn-sm btn-rounded text-white"
+                                                    style="cursor: pointer;">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -66,7 +76,7 @@
                         </table>
 
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
 
@@ -86,7 +96,7 @@
     <script src="{{ asset('assets/plugins/datatables/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('js/users/index.js') }}"></script>
+    <script src="{{ asset('js/funcionarios/index.js') }}"></script>
     <script>
         $(document).ready(function() {
             var a = $("#datatable-buttons").DataTable({
@@ -94,23 +104,27 @@
                     [10, 25, 50, 100, -1],
                     [10, 25, 50, 100, 'Tudo'],
                 ],
+                order: [
+                    [1, 'desc']
+                ],
                 buttons: [{
                         extend: 'copyHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3]
+                            columns: [2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'csvHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3]
+                             columns: [2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3]
-                        }
+                             columns: [2, 3, 4, 5, 6]
+                        },
+                        pageSize: 'A4'
                     },
                 ],
                 destroy: true,
@@ -121,14 +135,16 @@
             }).buttons().container().appendTo("#datatable-buttons_wrapper .col-md-6:eq(0)");
         });
     </script>
-    @if (Session::has('success')):
+    @if (Session::has('success'))
+        :
         <script>
             msgSuccess("{{ Session::get('success') }}");
         </script>
     @endif;
-    @if (Session::has('err')):
-    <script>
-        msgError("{{ Session::get('err') }}");
-    </script>
-@endif;
+    @if (Session::has('err'))
+        :
+        <script>
+            msgError("{{ Session::get('err') }}");
+        </script>
+    @endif;
 @endSection

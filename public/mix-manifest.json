@@ -1,6 +1,9 @@
 {
-    "/js/notifications.js": "/js/notifications.js",
-    "/js/validations.js": "/js/validations.js",
-    "/js/users/index.js": "/js/users/index.js",
+    "/js/notificacoes.js": "/js/notificacoes.js",
+    "/js/validacoes.js": "/js/validacoes.js",
+    "/js/endereco.js": "/js/endereco.js",
+    "/js/usuarios/index.js": "/js/usuarios/index.js",
+    "/js/funcionarios/index.js": "/js/funcionarios/index.js",
+    "/js/clientes/index.js": "/js/clientes/index.js",
     "/css/style-custom.css": "/css/style-custom.css"
 }

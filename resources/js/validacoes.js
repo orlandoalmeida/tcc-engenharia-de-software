@@ -64,7 +64,7 @@ $('.data').mask('99/99/9999', {placeholder: "__/__/____"});
 $('.cep').mask('99999-999');
 $('.rg').mask('99.999.999-A');
 $('.cpf').mask('999.999.999-99');
-$('.money').mask("#.##0,00", {reverse: true});
+$('.money').mask("99999.99", {reverse: true});
 $('.telefone').mask("(99) 99999-9999").focusout(function (event) {
     var target, phone, element;
     target = (event.currentTarget) ? event.currentTarget : event.srcElement;

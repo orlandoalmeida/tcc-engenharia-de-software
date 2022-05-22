@@ -11,7 +11,10 @@ const mix = require('laravel-mix');
 |
 */
 
-mix.js('resources/js/notifications.js', 'public/js')
-.js('resources/js/validations.js', 'public/js')
-.js('resources/views/users/index.js', 'public/js/users')
+mix.js('resources/js/notificacoes.js', 'public/js')
+.js('resources/js/validacoes.js', 'public/js')
+.js('resources/js/endereco.js', 'public/js')
+.js('resources/views/usuarios/index.js', 'public/js/usuarios')
+.js('resources/views/funcionarios/index.js', 'public/js/funcionarios')
+.js('resources/views/clientes/index.js', 'public/js/clientes')
 .css('resources/css/style-custom.css', 'css/style-custom.css');

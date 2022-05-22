@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CommonController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,10 @@ Route::get('/sair', [LoginController::class, 'logout'])->name('sair');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dash');
-    Route::resource('/usuario', UserController::class);
-    Route::get('/userSeed', [UserController::class, 'seed'])->name('usuario.seed');
+    Route::resource('/usuario', UsuarioController::class);
+    Route::resource('/funcionario', FuncionarioController::class);
+    Route::resource('/cliente', ClienteController::class);
+    Route::get('/userSeed', [UsuarioController::class, 'seed'])->name('usuario.seed');
+    Route::get('/funcionarioSeed', [FuncionarioController::class, 'seed'])->name('funcionario.seed');
+    Route::get('/clienteSeed', [ClienteController::class, 'seed'])->name('cliente.seed');
 });

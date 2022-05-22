@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class UserController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = (new User)->lazy()->all();
+        $usuarios = (new Usuario)->lazy()->all();
         $data = [
             'title' => 'Usuários',
-            'users' => $users
+            'usuarios' => $usuarios
         ];
-        return view('users.index', $data);
+        return view('usuarios.index', $data);
     }
 
     /**
@@ -34,7 +34,7 @@ class UserController extends Controller
         $data = [
             'title' => 'Novo Usuário',
         ];
-        return view('users.create', $data);
+        return view('usuarios.create', $data);
     }
 
     /**
@@ -46,21 +46,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:255',
+            'nome' => 'required|max:255',
             'password' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:usuarios,email',
         ]);
         if ($validated) {
-            $user = new User();
-            if (isset($request->profile_picture)) {
-                $user->profile_picture = $request->file('profile_picture')->store('avatars');
+            $usuario = new Usuario();
+            if (isset($request->foto_perfil)) {
+                $usuario->foto_perfil = $request->file('foto_perfil')->store('avatars');
             } else {
-                $user->profile_picture = 'avatars/no-avatar.png';
+                $usuario->foto_perfil = 'avatars/no-avatar.png';
             }
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->save();
+            $usuario->nome = $request->nome;
+            $usuario->email = $request->email;
+            $usuario->password = Hash::make($request->password);
+            $usuario->save();
             Session::flash('success', 'Usuário cadastrado com sucesso!');
             return redirect()->route('usuario.index');
         } else {
@@ -76,13 +76,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        if (isset($user->id)) {
+        $usuario = Usuario::find($id);
+        if (isset($usuario->id)) {
             $data = [
-                'user' => $user,
-                'title' => 'Editar Usuário ' . $user->name,
+                'usuario' => $usuario,
+                'title' => 'Editar Usuário ' . $usuario->nome,
             ];
-            return view('users.edit', $data);
+            return view('usuarios.edit', $data);
         } else {
             Session::flash('err', 'Usuário não encontrado!');
             return redirect()->route('usuario.index');
@@ -100,20 +100,20 @@ class UserController extends Controller
     {
         if (isset($id) && intval($id) > 0) {
             $validated = $request->validate([
-                'name' => 'required|max:255',
-                'email' => "required|email|unique:users,email,$id",
+                'nome' => 'required|max:255',
+                'email' => "required|email|unique:usuarios,email,$id",
             ]);
             if ($validated) {
-                $user = User::find($id);
-                if (isset($request->profile_picture)) {
-                    $user->profile_picture = $request->file('profile_picture')->store('avatars');
+                $usuario = Usuario::find($id);
+                if (isset($request->foto_perfil)) {
+                    $usuario->foto_perfil = $request->file('foto_perfil')->store('avatars');
                 }
-                $user->name = $request->name;
-                $user->email = $request->email;
+                $usuario->nome = $request->nome;
+                $usuario->email = $request->email;
                 if(isset($request->password)){
-                    $user->password = Hash::make($request->password);
+                    $usuario->password = Hash::make($request->password);
                 }
-                $user->save();
+                $usuario->save();
                 Session::flash('success', 'Usuário alterado com sucesso!');
                 return redirect()->route('usuario.index');
             }else{
@@ -133,12 +133,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete($id);
+        Usuario::find($id)->delete($id);
     }
 
     public function seed()
     {
-        User::factory()->count(5)->create();
-        return redirect()->route('dash');
+        Usuario::factory()->count(5)->create();
+        return redirect()->route('dash', 'debug');
     }
 }

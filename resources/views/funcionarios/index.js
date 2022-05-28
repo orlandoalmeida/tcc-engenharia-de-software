@@ -11,23 +11,25 @@ window.removeUsuario = function (user, token) {
     }).then(function (
         t
     ) {
-        $.ajax({
-            url: baseUri + '/funcionario/' + user.id,
-            type: 'DELETE',
-            data: {
-                "id": user.id,
-                "_token": token,
-            },
-            success: function () {
-                t.value && Swal.fire("Deletado!", "funcionário deletado com sucesso.", "success").then(()=>{
-                    setTimeout(()=>{
-                        window.location.reload();
-                    }, 550);
-                });
-                msgSuccess('funcionário deletado com sucesso.', '');
-                let $user_remove = '#funcionario-'+user.id;
-                $($user_remove).remove();
-            }
-        });
+        if (t.value != undefined && t.value == true) {
+            $.ajax({
+                url: baseUri + '/funcionario/' + user.id,
+                type: 'DELETE',
+                data: {
+                    "id": user.id,
+                    "_token": token,
+                },
+                success: function () {
+                    t.value && Swal.fire("Deletado!", "funcionário deletado com sucesso.", "success").then(() => {
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 550);
+                    });
+                    msgSuccess('funcionário deletado com sucesso.', '');
+                    let $user_remove = '#funcionario-' + user.id;
+                    $($user_remove).remove();
+                }
+            });
+        }
     });
 }

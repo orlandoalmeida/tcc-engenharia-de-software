@@ -41,8 +41,25 @@
                     </ul>
                 </li>
 
+                <li id="menu-produtos">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fa fa-gift"></i><span>Produtos</span></a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li id="menu-produtos-index"><a href="{{route('produto.index')}}">Listar Produtos</a></li>
+                        <li id="menu-produtos-create"><a href="{{route('produto.create')}}">Novo Produto</a></li>
+                    </ul>
+                </li>
+
+                <li id="menu-contas">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fa fa-money"></i><span>Contas a Pagar e Receber</span></a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li id="menu-contas-index"><a href="{{route('conta.index')}}">Listar Contas</a></li>
+                        <li id="menu-contas-create"><a href="{{route('conta.create')}}">Novo Conta</a></li>
+                    </ul>
+                </li>
+
                 <?php if(isset($_GET['debug'])): ?>
                 <hr>
+                <li class="text-center"><h4 class="text-white">Popular Dados</h4></li>
                 <li>
                     <a href="{{ route('usuario.seed') }}" class="waves-effect">
                         <i class="fas fa-user-plus"></i><span>Criar Usuários</span>
@@ -54,6 +71,10 @@
 
                     <a href="{{ route('cliente.seed') }}" class="waves-effect">
                         <i class="fas fa-user-plus"></i><span>Criar Clientes</span>
+                    </a>
+
+                    <a href="{{ route('produto.seed') }}" class="waves-effect">
+                        <i class="fas fa-gift"></i><span>Criar Produtos</span>
                     </a>
                 </li>
                 <?php endif; ?>

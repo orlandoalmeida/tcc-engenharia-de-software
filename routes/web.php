@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ContaController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +35,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('/usuario', UsuarioController::class);
     Route::resource('/funcionario', FuncionarioController::class);
     Route::resource('/cliente', ClienteController::class);
+    Route::resource('/produto', ProdutoController::class);
+    Route::resource('/conta', ContaController::class);
+
     Route::get('/userSeed', [UsuarioController::class, 'seed'])->name('usuario.seed');
     Route::get('/funcionarioSeed', [FuncionarioController::class, 'seed'])->name('funcionario.seed');
     Route::get('/clienteSeed', [ClienteController::class, 'seed'])->name('cliente.seed');
+    Route::get('/produtoSeed', [ProdutoController::class, 'seed'])->name('produto.seed');
 });

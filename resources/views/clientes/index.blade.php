@@ -45,7 +45,7 @@
                                                 <img class="rounded-circle header-profile-user"
                                                     src="{{ asset("$user->foto_perfil") }}">
                                             </td>
-                                            <td data-sort="{{$user->id}}">#{{ $user->id }}</td>
+                                            <td data-sort="{{ $user->id }}">#{{ $user->id }}</td>
                                             <td>{{ $user->nome }}</td>
                                             <td>{{ $user->telefone }}</td>
                                             <td>{{ $user->email }}</td>
@@ -102,19 +102,19 @@
                 buttons: [{
                         extend: 'copyHtml5',
                         exportOptions: {
-                            columns: [1, 2, 2, 4]
+                            columns: [1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'csvHtml5',
                         exportOptions: {
-                            columns: [1, 2, 2, 4]
+                            columns: [1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [1, 2, 2, 4]
+                            columns: [1, 2, 3, 4]
                         },
                         pageSize: 'A4'
                     },

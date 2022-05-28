@@ -5,5 +5,6 @@
     "/js/usuarios/index.js": "/js/usuarios/index.js",
     "/js/funcionarios/index.js": "/js/funcionarios/index.js",
     "/js/clientes/index.js": "/js/clientes/index.js",
+    "/js/produtos/index.js": "/js/produtos/index.js",
     "/css/style-custom.css": "/css/style-custom.css"
 }

@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="salario">Salário</label>
-                                    <input type="text" id="salario" name="salario" value="{{ $funcionario->salario }}"
+                                    <input type="text" id="salario" name="salario" value="{{ number_format($funcionario->salario, 2, '.', '') }}"
                                         class="form-control money" placeholder="Salário do funcionário">
                                 </div>
                                 <div class="col">

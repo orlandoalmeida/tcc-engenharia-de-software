@@ -11,23 +11,25 @@ window.removeUsuario = function (user, token) {
     }).then(function (
         t
     ) {
-        $.ajax({
-            url: baseUri + '/usuario/' + user.id,
-            type: 'DELETE',
-            data: {
-                "id": user.id,
-                "_token": token,
-            },
-            success: function () {
-                t.value && Swal.fire("Deletado!", "Usuário deletado com sucesso.", "success").then(()=>{
-                    setTimeout(()=>{
-                        window.location.reload();
-                    }, 550);
-                });
-                msgSuccess('Usuário deletado com sucesso.', '');
-                let $user_remove = '#usuario-'+user.id;
-                $($user_remove).remove();
-            }
-        });
+        if (t.value != undefined && t.value == true) {
+            $.ajax({
+                url: baseUri + '/usuario/' + user.id,
+                type: 'DELETE',
+                data: {
+                    "id": user.id,
+                    "_token": token,
+                },
+                success: function () {
+                    t.value && Swal.fire("Deletado!", "Usuário deletado com sucesso.", "success").then(() => {
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 550);
+                    });
+                    msgSuccess('Usuário deletado com sucesso.', '');
+                    let $user_remove = '#usuario-' + user.id;
+                    $($user_remove).remove();
+                }
+            });
+        }
     });
 }

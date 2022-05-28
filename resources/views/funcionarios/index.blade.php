@@ -41,29 +41,29 @@
                             </thead>
                             <tbody>
                                 @isset($funcionarios)
-                                    @foreach ($funcionarios as $user)
-                                        <tr id="funcionario-{{ $user->id }}">
+                                    @foreach ($funcionarios as $funcionario)
+                                        <tr id="funcionario-{{ $funcionario->id }}">
                                             <td>
                                                 <img class="rounded-circle header-profile-user"
-                                                    src="{{ asset("$user->foto_perfil") }}">
+                                                    src="{{ asset("$funcionario->foto_perfil") }}">
                                             </td>
-                                            <td data-sort="{{$user->id}}">#{{ $user->id }}</td>
-                                            <td>{{ $user->nome }}</td>
-                                            <td>{{ $user->cpf }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->cargo_nome }}</td>
-                                            <td>
-                                                @if(!@empty($user->salario) && doubleval($user->salario) > 0.00)
-                                                    R$ {{ $user->salario }}
+                                            <td data-sort="{{$funcionario->id}}">#{{ $funcionario->id }}</td>
+                                            <td>{{ $funcionario->nome }}</td>
+                                            <td>{{ $funcionario->cpf }}</td>
+                                            <td>{{ $funcionario->email }}</td>
+                                            <td>{{ $funcionario->cargo_nome }}</td>
+                                            <td data-sort="{{number_format($funcionario->salario, 2, '.', '')}}">
+                                                @if(!@empty($funcionario->salario) && doubleval($funcionario->salario) > 0.00)
+                                                    R$ {{ number_format($funcionario->salario, 2, '.', '') }}
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('funcionario.edit', $user->id) }}"
+                                                <a href="{{ route('funcionario.edit', $funcionario->id) }}"
                                                     class="btn btn-primary btn-sm btn-rounded text-white">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 &nbsp;
-                                                <a onclick="removeUsuario({{ $user }}, '{{ csrf_token() }}')"
+                                                <a onclick="removeUsuario({{ $funcionario }}, '{{ csrf_token() }}')"
                                                     class="btn btn-danger btn-sm btn-rounded text-white"
                                                     style="cursor: pointer;">
                                                     <i class="fa fa-trash"></i>

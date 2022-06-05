@@ -108,7 +108,7 @@
                     [1, 'desc']
                 ],
                 buttons: [{
-                        extend: 'copyHtml5',
+                        extend: 'print',
                         exportOptions: {
                             columns: [2, 3, 4, 5, 6]
                         }

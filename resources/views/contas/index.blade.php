@@ -11,11 +11,11 @@
             <div class="row">
                 <div class="topo-cadastros col-12">
                     <div class="page-title-box d-flex align-items-center justify-content-between">
-                        <h4 class="mb-0 font-size-18">Lista de Clientes</h4>
+                        <h4 class="mb-0 font-size-18">Lista de Contas a Pagar e Receber</h4>
                     </div>
                     <div class="">
-                        <a href="{{ route('cliente.create') }}" class="btn btn-primary pull-right"><i
-                                class="fa fa-plus-circle"></i> Novo Cliente</a>
+                        <a href="{{ route('conta.create') }}" class="btn btn-primary pull-right"><i
+                                class="fa fa-plus-circle"></i> Novo Conta</a>
                     </div>
                 </div>
             </div>
@@ -25,37 +25,39 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Clientes</h4>
-                        <table id="datatable-buttons" class="table table-striped">
+                        <h4 class="card-title">Contas a Pagar e Receber</h4>
+                        <table id="datatable-buttons" class="table table-stripeds">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Avatar</th>
                                     <th>#ID</th>
-                                    <th>Nome</th>
-                                    <th width="80">Telefone</th>
-                                    <th>Email</th>
-                                    <th width="80">Ações</th>
+                                    <th>Identificação</th>
+                                    <th>Valor a pagar ou receber</th>
+                                    <th>Data</th>
+                                    <th>Tipo</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @isset($clientes)
-                                    @foreach ($clientes as $user)
-                                        <tr id="cliente-{{ $user->id }}">
-                                            <td>
-                                                <img class="rounded-circle header-profile-user"
-                                                    src="{{ asset("$user->foto_perfil") }}">
+                                @isset($contas)
+                                {{--  tipo 1 = pagar  tipo 2 = receber --}}
+                                    @foreach ($contas as $conta)
+                                        <tr id="conta-{{ $conta->id }}" <?= $conta->tipo == 1 ? 'class="alert-danger"' : 'class="alert-success"' ?>>
+                                            <td data-sort="{{ $conta->id }}">#{{ $conta->id }}</td>
+                                            <td>{{ $conta->nome }}</td>
+                                            <td data-sort="{{ number_format($conta->valor, 2, '.', '') }}">R$ {{ number_format($conta->valor, 2, '.', '') }}</td>
+                                            <td data-sort="{{$conta->data}}">
+                                                {{$conta->data_formatada}}
                                             </td>
-                                            <td data-sort="{{ $user->id }}">#{{ $user->id }}</td>
-                                            <td>{{ $user->nome }}</td>
-                                            <td>{{ $user->telefone }}</td>
-                                            <td>{{ $user->email }}</td>
+                                            <td data-sort="{{ $conta->tipo }}">
+                                                <?= $conta->tipo == 1 ? 'A Pagar' : 'Receber' ?> &nbsp; <i <?= $conta->tipo == 1 ? 'class="fa fa-arrow-down"' : 'class="fa fa-arrow-up"' ?>></i><i class="fa fa-money"></i>
+                                            </td>
                                             <td>
-                                                <a href="{{ route('cliente.edit', $user->id) }}"
+                                                <a href="{{ route('conta.edit', $conta->id) }}"
                                                     class="btn btn-primary btn-sm btn-rounded text-white">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 &nbsp;
-                                                <a onclick="removeUsuario({{ $user }}, '{{ csrf_token() }}')"
+                                                <a onclick="removeConta({{ $conta }}, '{{ csrf_token() }}')"
                                                     class="btn btn-danger btn-sm btn-rounded text-white"
                                                     style="cursor: pointer;">
                                                     <i class="fa fa-trash"></i>
@@ -88,7 +90,7 @@
     <script src="{{ asset('assets/plugins/datatables/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('js/clientes/index.js') }}"></script>
+    <script src="{{ asset('js/contas/index.js') }}"></script>
     <script>
         $(document).ready(function() {
             var a = $("#datatable-buttons").DataTable({
@@ -97,24 +99,24 @@
                     [10, 25, 50, 100, 'Tudo'],
                 ],
                 order: [
-                    [1, 'desc']
+                    [0, 'desc']
                 ],
                 buttons: [{
                         extend: 'print',
                         exportOptions: {
-                            columns: [1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'csvHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4]
                         },
                         pageSize: 'A4'
                     },

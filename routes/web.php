@@ -7,6 +7,7 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('/cliente', ClienteController::class);
     Route::resource('/produto', ProdutoController::class);
     Route::resource('/conta', ContaController::class);
+    Route::resource('/venda', VendaController::class);
 
+    Route::get('/relatorio-vendas', [VendaController::class, 'relatorio'])->name('venda.relatorio');
+    Route::any('/buscaRelatorio', [VendaController::class, 'buscaRelatorio'])->name('venda.buscaRelatorio');
     Route::get('/userSeed', [UsuarioController::class, 'seed'])->name('usuario.seed');
     Route::get('/funcionarioSeed', [FuncionarioController::class, 'seed'])->name('funcionario.seed');
     Route::get('/clienteSeed', [ClienteController::class, 'seed'])->name('cliente.seed');

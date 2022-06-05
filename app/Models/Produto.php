@@ -11,8 +11,17 @@ class Produto extends Model
 
     protected $table = 'produtos';
 
-    public function getAtivos(){
+    public function getAtivos()
+    {
         return $this->select('produtos.*')->where('status', '=', 1)->get();
+    }
+
+    public function getForVendas(){
+        return $this->selectRaw('produtos.id, produtos.nome, produtos.preco, produtos.estoque')
+        ->where('status', '=', 1)
+        ->where('estoque', '>', 0)
+        ->orderBy('produtos.id')
+        ->get();
     }
 
     public function countAtivos()
@@ -23,7 +32,6 @@ class Produto extends Model
 
     public function listaEstoqueBaixo()
     {
-        return $this->select('produtos.*')->where('status', '=', '1')->whereRaw('produtos.estoque <= produtos.estoque_min')->get();
+        return $this->select('produtos.*')->where('status', '=', '1')->whereRaw('produtos.estoque <= produtos.estoque_min')->orderBy('produtos.id')->get();
     }
-
 }

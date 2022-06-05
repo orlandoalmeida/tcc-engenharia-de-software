@@ -21,7 +21,7 @@ class ProdutoFactory extends Factory
             'url' => $this->faker->unique()->slug,
             'estoque' => rand(3, 50),
             'estoque_min' => rand(1, 15),
-            'preco' => $this->faker->randomFloat(2, 5, 1500),
+            'preco' => $this->faker->randomFloat(2, 50, 1500),
             'descricao' => $this->faker->paragraph($nb =2),
             'img' => 'produtos/no-product.png',
         ];

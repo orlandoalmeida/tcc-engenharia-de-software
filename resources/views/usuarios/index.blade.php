@@ -96,7 +96,7 @@
                 ],
                 order: [[1, 'asc']],
                 buttons: [{
-                        extend: 'copyHtml5',
+                        extend: 'print',
                         exportOptions: {
                             columns: [1, 2, 3]
                         }

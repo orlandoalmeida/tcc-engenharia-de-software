@@ -159,9 +159,20 @@ class ProdutoController extends Controller
         }
     }
 
+    public function descontaEstoque($id = 0, $quantidade = 0){
+        if($id > 0){
+            $produto = Produto::find($id);
+            if (isset($produto->id)) {
+                $estoque = $produto->estoque - $quantidade;
+                $produto->estoque = $estoque;
+                $produto->save();
+            }
+        }
+    }
+
     public function seed()
     {
-        Produto::factory()->count(10)->create();
+        Produto::factory()->count(25)->create();
         return redirect()->route('dash', 'debug');
     }
 }

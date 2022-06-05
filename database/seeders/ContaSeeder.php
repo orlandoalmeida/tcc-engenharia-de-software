@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +24,7 @@ class ContaSeeder extends Seeder
                 'tipo' => 1,
             ],
             [
-                'nome' => 'Conta de àgua',
+                'nome' => 'Conta de água',
                 'valor' => 90.00,
                 'data' => date('Y-m-d', strtotime('2022-06-30')),
                 'tipo' => 1,
@@ -45,6 +44,12 @@ class ContaSeeder extends Seeder
             [
                 'nome' => 'Pagamento de promissória',
                 'valor' => 200.00,
+                'data' => date('Y-m-d', strtotime('2022-07-30')),
+                'tipo' => 2,
+            ],
+            [
+                'nome' => 'Recebimento de cliente',
+                'valor' => 750.29,
                 'data' => date('Y-m-d', strtotime('2022-07-30')),
                 'tipo' => 2,
             ],

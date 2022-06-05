@@ -6,7 +6,6 @@ use App\Models\Cargo;
 use Illuminate\Http\Request;
 use App\Models\Funcionario;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class FuncionarioController extends Controller

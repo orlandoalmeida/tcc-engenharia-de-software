@@ -159,7 +159,7 @@ class ClienteController extends Controller
     }
 
     public function seed(){
-        Cliente::factory()->count(50)->create();
+        Cliente::factory()->count(10)->create();
         return redirect()->route('dash', 'debug');
     }
 }

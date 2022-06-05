@@ -18,4 +18,6 @@ mix.js('resources/js/notificacoes.js', 'public/js')
 .js('resources/views/funcionarios/index.js', 'public/js/funcionarios')
 .js('resources/views/clientes/index.js', 'public/js/clientes')
 .js('resources/views/produtos/index.js', 'public/js/produtos')
+.js('resources/views/contas/index.js', 'public/js/contas')
+.js('resources/views/vendas/index.js', 'public/js/vendas')
 .css('resources/css/style-custom.css', 'css/style-custom.css');

@@ -11,11 +11,11 @@
             <div class="row">
                 <div class="topo-cadastros col-12">
                     <div class="page-title-box d-flex align-items-center justify-content-between">
-                        <h4 class="mb-0 font-size-18">Lista de Clientes</h4>
+                        <h4 class="mb-0 font-size-18">Listar Vendas</h4>
                     </div>
                     <div class="">
-                        <a href="{{ route('cliente.create') }}" class="btn btn-primary pull-right"><i
-                                class="fa fa-plus-circle"></i> Novo Cliente</a>
+                        <a href="{{ route('venda.create') }}" class="btn btn-primary pull-right"><i
+                                class="fa fa-plus-circle"></i> Nova Venda</a>
                     </div>
                 </div>
             </div>
@@ -25,37 +25,67 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Clientes</h4>
-                        <table id="datatable-buttons" class="table table-striped">
+                        <h4 class="card-title">Vendas</h4>
+                        <table id="datatable-buttons" class="table table-stripeds">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Avatar</th>
                                     <th>#ID</th>
-                                    <th>Nome</th>
-                                    <th width="80">Telefone</th>
-                                    <th>Email</th>
-                                    <th width="80">Ações</th>
+                                    <th>Cliente</th>
+                                    <th>Produto</th>
+                                    <th>Valor unitário</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor total</th>
+                                    <th>Forma de pagamento</th>
+                                    <th>Data da venda</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @isset($clientes)
-                                    @foreach ($clientes as $user)
-                                        <tr id="cliente-{{ $user->id }}">
+                                @isset($vendas)
+                                    @foreach ($vendas as $prod)
+                                        <tr id="venda-{{ $prod->id }}">
+                                            <td data-sort="{{ $prod->id }}">#{{ $prod->id }}</td>
+                                            <td>{{ $prod->cliente }}</td>
+                                            <td>{{ $prod->produto }}</td>
+                                            <td data-sort="{{ number_format($prod->valor_unitario, 2, '.', '') }}">R$
+                                                {{ number_format($prod->valor_unitario, 2, '.', '') }}</td>
+                                            <td data-sort="{{ $prod->quantidade }}">{{ $prod->quantidade }}</td>
+                                            <td data-sort="{{ number_format($prod->valor_total, 2, '.', '') }}">R$
+                                                {{ number_format($prod->valor_total, 2, '.', '') }}</td>
                                             <td>
-                                                <img class="rounded-circle header-profile-user"
-                                                    src="{{ asset("$user->foto_perfil") }}">
+                                                @switch($prod->forma_pagamento)
+                                                    @case(1)
+                                                        Cartão de Crédito
+                                                    @break
+
+                                                    @case(2)
+                                                        Cartão de Débito
+                                                    @break
+
+                                                    @case(3)
+                                                        Pix
+                                                    @break
+
+                                                    @case(4)
+                                                        Dinheiro
+                                                    @break
+
+                                                    @case(5)
+                                                        Boleto
+                                                    @break
+
+                                                    @case(6)
+                                                        Cheque
+                                                    @break
+
+                                                    @default
+                                                @endswitch
                                             </td>
-                                            <td data-sort="{{ $user->id }}">#{{ $user->id }}</td>
-                                            <td>{{ $user->nome }}</td>
-                                            <td>{{ $user->telefone }}</td>
-                                            <td>{{ $user->email }}</td>
                                             <td>
-                                                <a href="{{ route('cliente.edit', $user->id) }}"
-                                                    class="btn btn-primary btn-sm btn-rounded text-white">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                &nbsp;
-                                                <a onclick="removeUsuario({{ $user }}, '{{ csrf_token() }}')"
+                                                {{ date('d/m/Y H:i', strtotime($prod->data)) }}
+                                            </td>
+                                            <td>
+                                                <a onclick="removeVenda({{ $prod }}, '{{ csrf_token() }}')"
                                                     class="btn btn-danger btn-sm btn-rounded text-white"
                                                     style="cursor: pointer;">
                                                     <i class="fa fa-trash"></i>
@@ -88,7 +118,7 @@
     <script src="{{ asset('assets/plugins/datatables/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('js/clientes/index.js') }}"></script>
+    <script src="{{ asset('js/vendas/index.js') }}"></script>
     <script>
         $(document).ready(function() {
             var a = $("#datatable-buttons").DataTable({
@@ -97,24 +127,24 @@
                     [10, 25, 50, 100, 'Tudo'],
                 ],
                 order: [
-                    [1, 'desc']
+                    [0, 'desc']
                 ],
                 buttons: [{
                         extend: 'print',
                         exportOptions: {
-                            columns: [1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
                         }
                     },
                     {
                         extend: 'csvHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
                         }
                     },
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
                         },
                         pageSize: 'A4'
                     },

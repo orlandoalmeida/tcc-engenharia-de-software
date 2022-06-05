@@ -17,22 +17,6 @@
                     </a>
                 </li>
 
-                <li id="menu-usuarios">
-                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fa fa-user"></i><span>Usuários</span></a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li id="menu-usuarios-index"><a href="{{route('usuario.index')}}">Listar Usuários</a></li>
-                        <li id="menu-usuarios-create"><a href="{{route('usuario.create')}}">Novo Usuário</a></li>
-                    </ul>
-                </li>
-
-                <li id="menu-funcionarios">
-                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fa fa-users"></i><span>Funcionários</span></a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li id="menu-funcionarios-index"><a href="{{route('funcionario.index')}}">Listar Funcionários</a></li>
-                        <li id="menu-funcionarios-create"><a href="{{route('funcionario.create')}}">Novo Funcionário</a></li>
-                    </ul>
-                </li>
-
                 <li id="menu-clientes">
                     <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="far fa-handshake"></i><span>Clientes</span></a>
                     <ul class="sub-menu" aria-expanded="true">
@@ -54,6 +38,31 @@
                     <ul class="sub-menu" aria-expanded="true">
                         <li id="menu-contas-index"><a href="{{route('conta.index')}}">Listar Contas</a></li>
                         <li id="menu-contas-create"><a href="{{route('conta.create')}}">Novo Conta</a></li>
+                    </ul>
+                </li>
+
+                <li id="menu-vendas">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fa fa-shopping-cart"></i><span>PDV</span></a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li id="menu-vendas-index"><a href="{{route('venda.index')}}">Listar Vendas</a></li>
+                        <li id="menu-vendas-create"><a href="{{route('venda.create')}}">Nova Venda</a></li>
+                        <li id="menu-vendas-relatorio"><a href="{{route('venda.relatorio')}}">Relatório de Vendas</a></li>
+                    </ul>
+                </li>
+                <hr>                
+                <li id="menu-funcionarios">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fa fa-users"></i><span>Funcionários</span></a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li id="menu-funcionarios-index"><a href="{{route('funcionario.index')}}">Listar Funcionários</a></li>
+                        <li id="menu-funcionarios-create"><a href="{{route('funcionario.create')}}">Novo Funcionário</a></li>
+                    </ul>
+                </li>
+
+                <li id="menu-usuarios">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="fa fa-user"></i><span>Usuários</span></a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li id="menu-usuarios-index"><a href="{{route('usuario.index')}}">Listar Usuários</a></li>
+                        <li id="menu-usuarios-create"><a href="{{route('usuario.create')}}">Novo Usuário</a></li>
                     </ul>
                 </li>
 
